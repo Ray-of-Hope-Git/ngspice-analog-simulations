@@ -1,41 +1,23 @@
-# ngspice-analog-simulations
-# NGspice Analog Circuit Simulations
+NGspice Analog Simulations
+Some analog circuit sims I've been working on in NGspice. Mostly focused on basic building blocks — filters, amplifiers, diff pairs.
 
-A collection of analog circuit simulations built with [NGspice](https://ngspice.sourceforge.io/), demonstrating core analog design concepts including frequency response analysis, transistor-level amplifier design, and differential signaling.
+What's in here
+RC Low-Pass Filter
+01_rc_lowpass_filter/rc_lowpass.cir
+Simple 1st-order RC filter (R=1k, C=100nF), cutoff around 1.59kHz. Runs an AC sweep for the Bode plot and a transient sim to see the filtering in action.
 
-## Simulations
 
-### 01 - RC Low-Pass Filter
-**File:** `01_rc_lowpass_filter/rc_lowpass.cir`
+NMOS Common-Source Amp
+02_nmos_common_source/nmos_cs_amp.cir
+CS amplifier with voltage divider bias and source bypass cap. Pulls the DC operating point, does AC gain analysis, and shows a 10kHz signal getting amplified in transient.
 
-First-order passive RC low-pass filter (R=1kΩ, C=100nF) with a cutoff frequency of ~1.59 kHz. Includes AC sweep for Bode plot (magnitude and phase) and transient analysis showing signal attenuation above the corner frequency.
 
-### 02 - NMOS Common-Source Amplifier
-**File:** `02_nmos_common_source/nmos_cs_amp.cir`
+CMOS Diff Pair
+03_cmos_diff_pair/cmos_diff_pair.cir
+NMOS diff pair with PMOS current mirror load, 100uA tail current. Has the DC transfer curve sweep and AC gain. This one's the most interesting — you can clearly see the linear region in the DC sweep.
 
-Single-stage NMOS common-source amplifier with resistive voltage-divider biasing, source degeneration resistor, and source bypass capacitor. Demonstrates DC operating point extraction, small-signal AC gain, and transient amplification of a 10 kHz input.
 
-### 03 - CMOS Differential Pair with Current Mirror Load
-**File:** `03_cmos_diff_pair/cmos_diff_pair.cir`
-
-CMOS differential amplifier using an NMOS input pair and PMOS active current mirror load. Driven by an ideal tail current source (100 µA). Includes DC transfer characteristic sweep, AC differential gain analysis, and operating point verification.
-
-## How to Run
-
-Install NGspice, then:
-
-```bash
-ngspice <filename>.cir
-```
-
-Or run in batch mode:
-
-```bash
-ngspice -b <filename>.cir
-```
-
-## Tools & Environment
-
-- **Simulator:** NGspice 43+
-- **MOSFET Models:** SPICE Level 1 (educational; substitute foundry models for production use)
-- **Analysis types used:** `.op`, `.ac`, `.tran`, `.dc`
+How to run
+Drop the .cir file in your NGspice bin folder and:
+source rc_lowpass.cir
+Plots pop up automatically — the .control blocks handle the analysis and plotting.
