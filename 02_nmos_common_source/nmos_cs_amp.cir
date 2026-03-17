@@ -1,7 +1,6 @@
 * NMOS Common-Source Amplifier with Voltage Divider Biasing
-* Demonstrates DC operating point, AC small-signal gain, and transient behavior
+* Shows DC operating point, AC small-signal gain, and transient behavior
 *
-* Author: [Your Name]
 * Tool: NGspice
 
 * --- Power Supply ---
@@ -11,7 +10,7 @@ Vdd vdd 0 DC 5
 * DC bias at gate set by voltage divider; AC small signal overlaid
 Vin in 0 DC 0 AC 10m SIN(0 10m 10k)
 
-* --- Biasing Network ---
+* --- Biasing ---
 * Voltage divider sets gate bias ~2V
 R1 vdd gate 300k
 R2 gate 0 200k
@@ -55,12 +54,12 @@ Rload out 0 10k
 
   * AC analysis: small-signal gain vs frequency
   ac dec 100 100 100Meg
-  plot vdb(out) title 'Common-Source Amplifier - Voltage Gain (dB)'
-  plot cph(v(out))*180/PI title 'Common-Source Amplifier - Phase'
+  plot vdb(out) title 'Common-Source Amplifier Voltage Gain (dB)'
+  plot cph(v(out))*180/PI title 'Common-Source Amplifier Phase'
 
   * Transient: observe amplified 10kHz signal
   tran 0.5u 0.5m
-  plot v(in) v(out) title 'Common-Source Amplifier - Input vs Output'
+  plot v(in) v(out) title 'Common-Source Amplifier Input vs Output'
 .endc
 
 .end
