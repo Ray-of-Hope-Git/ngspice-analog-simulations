@@ -1,15 +1,14 @@
 * RC Low-Pass Filter - AC and Transient Analysis
-* Demonstrates frequency response and step response of a 1st-order RC filter
+* Shows frequency response and step response of a 1st-order RC filter
 * Cutoff frequency: f_c = 1/(2*pi*R*C) = ~1.59 kHz
 *
-* Author: [Your Name]
 * Tool: NGspice
 
-* --- Circuit Netlist ---
+* --- Netlist ---
 * Input source: 1V AC, 1kHz sine for transient
 Vin in 0 DC 0 AC 1 SIN(0 1 1k)
 
-* Filter components
+* Components
 R1 in out 1k
 C1 out 0 100n
 
@@ -21,13 +20,13 @@ C1 out 0 100n
   * Plot magnitude (Bode plot)
   set hcopydevtype=svg
   set hcopypscolor=1
-  plot vdb(out) title 'RC Low-Pass Filter - Magnitude Response'
-  plot cph(v(out))*180/PI title 'RC Low-Pass Filter - Phase Response'
+  plot vdb(out) title 'RC Low-Pass Filter Magnitude Response'
+  plot cph(v(out))*180/PI title 'RC Low-Pass Filter Phase Response'
 
   * Transient analysis: 5ms, step 1us
   tran 1u 5m
 
-  plot v(in) v(out) title 'RC Low-Pass Filter - Transient Response'
+  plot v(in) v(out) title 'RC Low-Pass Filter Transient Response'
 .endc
 
 .end
